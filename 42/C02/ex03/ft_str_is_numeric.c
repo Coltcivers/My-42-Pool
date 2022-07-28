@@ -1,45 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/09 17:38:25 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/12 18:19:21 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-int	ft_strlen(char *str)
+int	ft_str_is_numeric(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
+	{
+		if (!(str[i] >= 48 && str[i] <= 57))
+		{
+			return (0);
+		}
 		i++;
-	return (i);
+	}
+	return (1);
 }
-
-char	*ft_strdup(char *src)
-{
-	char	*ptr;
-	int		i;
-
-	i = 0;
-	if (src == NULL)
-	{
-		return (NULL);
-	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
-	{
-		ptr[i] = src[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}	

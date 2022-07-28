@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/11 17:38:29 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/12 20:38:08 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-int	ft_strlen(char *str)
+int	ft_strlen(char*str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != 0)
+	{
 		i++;
+	}
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	char	*ptr;
-	int		i;
+	unsigned int	i;
 
 	i = 0;
-	if (src == NULL)
+	while (src[i] && i < size - 1 && size != 0)
 	{
-		return (NULL);
-	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
-	{
-		ptr[i] = src[i];
+		dest[i] = src[i];
 		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
-}	
+	if (size != 0)
+		dest[i] = '\0';
+	return (ft_strlen(src));
+}

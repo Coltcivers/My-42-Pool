@@ -1,45 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_print_comb2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/06 17:55:23 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/10 10:20:52 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <unistd.h>
 
-int	ft_strlen(char *str)
+void	ft_putchar(char a)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	write(1, &a, 1);
 }
 
-char	*ft_strdup(char *src)
+void	ft_print_comb2(void)
 {
-	char	*ptr;
-	int		i;
+	char	a;
+	char	b;
 
-	i = 0;
-	if (src == NULL)
+	a = 0;
+	b = 1;
+	while (a < 99)
 	{
-		return (NULL);
+		ft_putchar(a / 10 + '0');
+		ft_putchar(a % 10 + '0');
+		ft_putchar(' ');
+		ft_putchar(b / 10 + '0');
+		ft_putchar(b % 10 + '0');
+		if (a < 98)
+		{
+			write(1, ", ", 2);
+		}
+		b++;
+		if (b > 99)
+			b = ++a + 1;
 	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
-	{
-		ptr[i] = src[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}	
+}

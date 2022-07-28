@@ -1,45 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/06 22:09:53 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/21 21:18:51 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <unistd.h>
 
-int	ft_strlen(char *str)
+void	ft_putchar(char a)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	write(1, &a, 1);
 }
 
-char	*ft_strdup(char *src)
+void	ft_putnbr(int nb)
 {
-	char	*ptr;
-	int		i;
+	unsigned int	n;
 
-	i = 0;
-	if (src == NULL)
+	if (nb < 0)
 	{
-		return (NULL);
+		write(1, "-", 1);
+		n = -nb;
 	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
+	else
+	n = nb;
+	if (n > 9)
 	{
-		ptr[i] = src[i];
-		i++;
+		ft_putnbr(n / 10);
+		n %= 10;
 	}
-	ptr[i] = '\0';
-	return (ptr);
-}	
+	ft_putchar('0' + n);
+}

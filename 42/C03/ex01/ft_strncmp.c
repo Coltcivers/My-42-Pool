@@ -1,45 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/12 11:07:24 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/13 17:39:30 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-int	ft_strlen(char *str)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if (n == 0)
+		return (0);
+	while (s1[i] != '\0' && s1[i] == s2[i] && i < n - 1)
 		i++;
-	return (i);
+	return (s1[i] - s2[i]);
 }
-
-char	*ft_strdup(char *src)
-{
-	char	*ptr;
-	int		i;
-
-	i = 0;
-	if (src == NULL)
-	{
-		return (NULL);
-	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
-	{
-		ptr[i] = src[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}	

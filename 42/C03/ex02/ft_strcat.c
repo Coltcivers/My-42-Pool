@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/12 12:40:44 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/13 11:09:49 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 int	ft_strlen(char *str)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (str[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strcat(char *dest, char *src)
 {
-	char	*ptr;
-	int		i;
+	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
-	if (src == NULL)
+	j = ft_strlen(dest);
+	while (src[i])
 	{
-		return (NULL);
-	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
-	{
-		ptr[i] = src[i];
+		dest[j] = src[i];
 		i++;
+		j++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
-}	
+	dest[j] = '\0';
+	return (dest);
+}

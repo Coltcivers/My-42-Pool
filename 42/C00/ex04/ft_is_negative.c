@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_is_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/09 18:07:23 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/09 18:52:55 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <unistd.h> 
 
-int	ft_strlen(char *str)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	write(1, &c, 1);
 }
 
-char	*ft_strdup(char *src)
+void	ft_is_negative(int n)
 {
-	char	*ptr;
-	int		i;
-
-	i = 0;
-	if (src == NULL)
+	if (n < 0)
 	{
-		return (NULL);
+		ft_putchar('N');
 	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
-	while (src[i] != '\0')
+	else
 	{
-		ptr[i] = src[i];
-		i++;
+		ft_putchar('P');
 	}
-	ptr[i] = '\0';
-	return (ptr);
-}	
+}

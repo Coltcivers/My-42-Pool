@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgirard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:10:26 by hgirard           #+#    #+#             */
-/*   Updated: 2022/07/20 12:26:05 by hgirard          ###   ########.fr       */
+/*   Created: 2022/07/13 12:50:57 by hgirard           #+#    #+#             */
+/*   Updated: 2022/07/13 15:55:22 by hgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-int	ft_strlen(char *str)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	size_i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*ptr;
-	int		i;
-
-	i = 0;
-	if (src == NULL)
+	size_i = 0;
+	while (dest[size_i] && size_i < size)
+		size_i++;
+	while (src[i] && size && size_i + i < size - 1)
 	{
-		return (NULL);
+		dest[size_i + i] = src[i];
+		i++;
 	}
-	ptr = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (size_i + i < size)
+		dest[size_i + i] = '\0';
+	i = 0;
 	while (src[i] != '\0')
-	{
-		ptr[i] = src[i];
 		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	return ((size_i + i));
 }	
